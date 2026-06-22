@@ -1,0 +1,202 @@
+# ============================================================
+# mod_registros.R
+# Descarga de registros GBIF / iNaturalist
+# y visualización en mapa leaflet
+# Explorador de Especies · Uruguay
+# ============================================================
+
+mod_registros_ui <- function(id) {
+  ns <- NS(id)
+  div(
+    class = "p-3",
+    layout_columns(
+      col_widths = c(4, 8),
+      fill       = FALSE,
+
+      # Panel izquierdo
+      div(
+        card(
+          class = "mb-3",
+          card_header(bs_icon("info-circle", class = "me-1"),
+                      "Resumen"),
+          card_body(uiOutput(ns("resumen_registros")))
+        ),
+        card(
+          card_header(bs_icon("table", class = "me-1"),
+                      "Registros por fuente"),
+          card_body(uiOutput(ns("tabla_fuentes")))
+        ),
+        br(),
+        downloadButton(ns("dl_registros"), "Descargar CSV",
+                       class = "btn-outline-primary btn-sm w-100")
+      ),
+
+      # Panel derecho — mapa
+      card(
+        card_header(bs_icon("map", class = "me-1"),
+                    "Mapa de ocurrencias"),
+        card_body(
+          class = "p-0",
+          leaflet::leafletOutput(ns("mapa_registros"), height = "520px")
+        )
+      )
+    )
+  )
+}
+
+mod_registros_server <- function(id, estado, sidebar_vals) {
+  moduleServer(id, function(input, output, session) {
+
+    # Mapa base centrado en Uruguay
+    output$mapa_registros <- leaflet::renderLeaflet({
+      leaflet::leaflet() |>
+        leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron) |>
+        leaflet::setView(lng = -56.0, lat = -32.5, zoom = 6)
+    })
+
+    # Descargar registros al presionar "Modelar"
+    observeEvent(sidebar_vals$btn_modelar(), {
+      especie <- trimws(sidebar_vals$especie())
+      req(nchar(especie) > 0)
+
+      providers_sel <- c(
+        if (sidebar_vals$src_gbif()) "gbif",
+        if (sidebar_vals$src_inat()) "inat"
+      )
+      if (length(providers_sel) == 0) return()
+
+      estado$descargando <- TRUE
+
+      tryCatch({
+
+        recs <- h3sdm::h3sdm_get_records(
+          species           = especie,
+          aoi_sf            = uy_outline(),
+          providers         = providers_sel,
+          limit             = sidebar_vals$limite(),
+          remove_duplicates = TRUE,
+          date              = c("1990-01-01", as.character(Sys.Date()))
+        )
+
+        if (is.null(recs) || nrow(recs) == 0) {
+          showNotification(
+            paste0("No se encontraron registros de '", especie,
+                   "' en Uruguay."),
+            type = "warning", duration = 6)
+          estado$registros_sf        <- NULL
+          estado$error_sin_registros <- TRUE
+          estado$descargando         <- FALSE
+          return()
+        }
+
+        estado$registros_sf     <- recs
+        estado$registros_listos <- Sys.time()
+        estado$descargando      <- FALSE
+
+        # Actualizar mapa
+        coords <- sf::st_coordinates(sf::st_transform(recs, 4326))
+        bbox   <- sf::st_bbox(sf::st_transform(recs, 4326))
+        leaflet::leafletProxy(session$ns("mapa_registros")) |>
+          leaflet::clearMarkers() |>
+          leaflet::addCircleMarkers(
+            lng         = coords[, 1],
+            lat         = coords[, 2],
+            radius      = 5,
+            color       = "#0038A8",
+            fillColor   = "#75AADB",
+            fillOpacity = 0.8,
+            weight      = 1,
+            popup       = if ("provider" %in% names(recs))
+                            paste0("<b>", especie, "</b><br>",
+                                   sf::st_drop_geometry(recs)$provider)
+                          else especie
+          ) |>
+          leaflet::addPolygons(
+            data        = sf::st_transform(uy_outline(), 4326),
+            color       = "#0038A8",
+            fillOpacity = 0,
+            weight      = 1.5
+          ) |>
+          leaflet::fitBounds(bbox[["xmin"]], bbox[["ymin"]],
+                             bbox[["xmax"]], bbox[["ymax"]])
+
+        showNotification(
+          paste0(nrow(recs), " registros descargados."),
+          type = "message", duration = 4)
+
+      }, error = function(e) {
+        estado$descargando <- FALSE
+        showNotification(paste("Error al descargar registros:", conditionMessage(e)),
+                         type = "error", duration = 8)
+      })
+    })
+
+    # Resumen
+    output$resumen_registros <- renderUI({
+      recs <- estado$registros_sf
+      if (is.null(recs)) {
+        return(p(class = "small text-muted mb-0",
+                 bs_icon("exclamation-circle", class = "me-1"),
+                 "Presioná 'Ver distribución' para descargar registros."))
+      }
+      div(
+        div(
+          class = "alert alert-success small py-2 px-3 mb-2",
+          bs_icon("check-circle-fill", class = "me-1"),
+          strong(nrow(recs)), " registros encontrados"
+        ),
+        if (!is.null(estado$n_registros_modelo)) {
+          div(
+            class = "alert alert-info small py-2 px-3 mb-2",
+            bs_icon("funnel-fill", class = "me-1"),
+            strong(estado$n_registros_modelo), " hexágonos de presencia en el modelo",
+            if (!is.null(estado$n_removidos) && estado$n_removidos > 0)
+              div(class = "text-muted mt-1",
+                  bs_icon("exclamation-triangle", class = "me-1"),
+                  estado$n_removidos, " hexágonos removidos como outliers ambientales"),
+            div(class = "text-muted mt-1",
+                bs_icon("hexagon-fill", class = "me-1"),
+                strong(estado$n_registros_modelo), " presencias · ",
+                strong(estado$n_registros_modelo), " pseudo-ausencias (1:1)")
+          )
+        }
+      )
+    })
+
+    # Tabla por fuente
+    output$tabla_fuentes <- renderUI({
+      recs <- estado$registros_sf
+      if (is.null(recs) || !"provider" %in% names(recs)) return(NULL)
+      df <- as.data.frame(table(sf::st_drop_geometry(recs)$provider))
+      names(df) <- c("Fuente", "Registros")
+      tagList(
+        p(class = "small text-muted mb-1",
+          "Luego de eliminar duplicados por coordenada exacta."),
+        tags$table(
+          class = "table table-sm small mb-0",
+          tags$thead(
+            style = "background:#0038A8; color:#fff;",
+            tags$tr(lapply(names(df), tags$th))
+          ),
+          tags$tbody(
+            apply(df, 1, function(r) tags$tr(lapply(r, tags$td)))
+          )
+        )
+      )
+    })
+
+    # Descarga
+    output$dl_registros <- downloadHandler(
+      filename = function() {
+        paste0("registros_", gsub(" ", "_", estado$registros_sf |>
+                                    attr("species") %||% "especie"),
+               "_", Sys.Date(), ".csv")
+      },
+      content = function(file) {
+        req(estado$registros_sf)
+        write.csv(sf::st_drop_geometry(estado$registros_sf),
+                  file, row.names = FALSE)
+      }
+    )
+  })
+}

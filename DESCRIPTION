@@ -1,0 +1,39 @@
+Package: EcoSdmUy
+Title: Species Distribution Modeling for Uruguay
+Version: 1.0.0
+Date: 2026-06-22
+Authors@R: 
+    person(given = "Manuel",
+           family = "Spinola",
+           role = c("aut", "cre"),
+           email = "manuel.spinola@una.ac.cr")
+Description: Interactive Shiny application for species distribution modeling
+    in Uruguay, using hexagonal H3 spatial grids and CHELSA bioclimatic
+    variables. Built on the h3sdm package. Occurrence data from GBIF and
+    iNaturalist.
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.0.0
+Imports:
+    shiny,
+    bslib,
+    bsicons,
+    shinyjs,
+    leaflet,
+    leafgl,
+    sf,
+    dplyr,
+    rlang,
+    h3sdm,
+    parsnip,
+    recipes,
+    workflows,
+    tune,
+    yardstick,
+    rsample,
+    spatialsample,
+    DALEX,
+    ingredients,
+    ggplot2,
+    mgcv,
+    ranger
