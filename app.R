@@ -24,8 +24,9 @@ source("R/mod_metricas.R")
 # ── UI ───────────────────────────────────────────────────────
 ui <- page_navbar(
   title = div(
-    span("\U0001F1FA\U0001F1FE",
-         style = "font-size:1.4rem; vertical-align:middle; margin-right:8px;"),
+    tags$img(src = "logo_uy.png",
+             height = "34px", class = "me-2",
+             style = "border-radius:50%; vertical-align:middle;"),
     span("Distribución de Especies · Uruguay",
          style = "vertical-align:middle;")
   ),

@@ -5,17 +5,21 @@
 # ============================================================
 
 # ── Contorno de Uruguay ──────────────────────────────────────
+# Fuente: Natural Earth via rnaturalearth (escala "medium")
+# Generado con:
+#   library(rnaturalearth)
+#   uy <- ne_countries(country = "Uruguay", scale = "medium", returnclass = "sf")
+#   sf::st_write(uy, "data/uruguay_sf_ne.gpkg")
+
 .uy_outline_cache <- NULL
 
 uy_outline <- function() {
   if (!is.null(.uy_outline_cache)) return(.uy_outline_cache)
-  path <- file.path(DATA_DIR, "uruguay_sf.gpkg")
+  path <- file.path(DATA_DIR, "uruguay_sf_ne.gpkg")
   if (!file.exists(path)) {
-    stop("[utils_data] No se encontró uruguay_sf.gpkg en data/")
+    stop("[utils_data] No se encontró uruguay_sf_ne.gpkg en data/")
   }
   shp <- sf::st_read(path, quiet = TRUE)
-  # Si tiene múltiples filas (departamentos), disolver en uno solo
-  if (nrow(shp) > 1) shp <- sf::st_union(shp) |> sf::st_sf()
   .uy_outline_cache <<- shp
   shp
 }
