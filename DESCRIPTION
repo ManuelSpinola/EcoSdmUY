@@ -3,10 +3,13 @@ Title: Species Distribution Modeling for Uruguay
 Version: 1.0.0
 Date: 2026-06-22
 Authors@R: 
-    person(given = "Manuel",
+    c(person(given = "Manuel",
            family = "Spinola",
            role = c("aut", "cre"),
-           email = "manuel.spinola@una.ac.cr")
+           email = "manuel.spinola@una.ac.cr"),
+      person(given = "Jimena",
+           family = "Spinola Auscarriaga",
+           role = "aut"))
 Description: Interactive Shiny application for species distribution modeling
     in Uruguay, using hexagonal H3 spatial grids and CHELSA bioclimatic
     variables. Built on the h3sdm package. Occurrence data from GBIF and

@@ -166,7 +166,7 @@ ui <- page_navbar(
         card(
           card_header(bs_icon("person", class = "me-1"), "Créditos"),
           card_body(
-            p(strong("Manuel Spínola")),
+            p(strong("Manuel Spínola · Jimena Spínola Auscarriaga")),
             p("App desarrollada con asistencia de ",
               tags$a("Claude (Anthropic)",
                      href = "https://www.anthropic.com",

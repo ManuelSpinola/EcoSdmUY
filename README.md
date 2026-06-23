@@ -1,6 +1,6 @@
 # EcoSdmUY · Explorador de Especies · Uruguay
 **Versión 1.0**  
-Manuel Spínola
+Manuel Spínola · Jimena Spínola Auscarriaga
 
 ---
 
@@ -22,9 +22,7 @@ EcoSdmUY/
 │   ├── uruguay_sf_ne.gpkg                       # Contorno de Uruguay (Natural Earth)
 │   ├── bio_chelsa_presente_no_cor_uy_32721_h6.gpkg  # Variables bioclimáticas CHELSA actuales, res H3 = 6
 │   ├── bio_chelsa_presente_no_cor_uy_32721_h7.gpkg  # ídem res 7
-│   ├── bio_chelsa_futuro_uy_32721_h6.gpkg            # Variables bioclimáticas CHELSA futuras SSP5-8.5, res 6
 │   ├── bio_chelsa_futuro_uy_32721_h6.gpkg            # Variables bioclimáticas CHELSA futuras SSP5-8.5, res H3 = 6
-│   └── bio_chelsa_futuro_uy_32721_h7.gpkg            # ídem res 7
 │   └── bio_chelsa_futuro_uy_32721_h7.gpkg            # ídem res 7
 └── www/
     └── logo_uy.png
