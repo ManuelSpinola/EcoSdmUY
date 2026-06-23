@@ -22,10 +22,10 @@ EcoSdmUY/
 │   ├── uruguay_sf_ne.gpkg                       # Contorno de Uruguay (Natural Earth)
 │   ├── bio_chelsa_presente_no_cor_uy_32721_h6.gpkg  # Variables bioclimáticas CHELSA actuales, res H3 = 6
 │   ├── bio_chelsa_presente_no_cor_uy_32721_h7.gpkg  # ídem res 7
-│   ├── bio_chelsa_presente_no_cor_uy_32721_h8.gpkg  # ídem res 8
 │   ├── bio_chelsa_futuro_uy_32721_h6.gpkg            # Variables bioclimáticas CHELSA futuras SSP5-8.5, res 6
-│   ├── bio_chelsa_futuro_uy_32721_h7.gpkg            # ídem res 7
-│   └── bio_chelsa_futuro_uy_32721_h8.gpkg            # ídem res 8
+│   ├── bio_chelsa_futuro_uy_32721_h6.gpkg            # Variables bioclimáticas CHELSA futuras SSP5-8.5, res H3 = 6
+│   └── bio_chelsa_futuro_uy_32721_h7.gpkg            # ídem res 7
+│   └── bio_chelsa_futuro_uy_32721_h7.gpkg            # ídem res 7
 └── www/
     └── logo_uy.png
 ```
@@ -82,7 +82,7 @@ WorldClim 2.1 tiene una línea base fija (1970–2000).
 
 Las variables bioclimáticas deben ser filtradas por correlación antes de
 guardarlas en los `.gpkg`. Se recomienda usar `filter_collinear()` con un
-umbral de correlación de Pearson r < 0.7.
+umbral de correlación de Pearson r < 0.8.
 
 ---
 
@@ -115,8 +115,8 @@ uy_grid_7_32721 <- sf::st_transform(uy_grid_7, 32721)
 bio_actual <- terra::rast("ruta/a/chelsa_bio_actual.tif")
 bio_actual <- terra::project(bio_actual, "EPSG:32721")
 
-# 5. Filtrar variables correlacionadas (r < 0.7)
-vars_no_cor <- filter_collinear(bio_actual, cutoff = 0.7, method = "cor_caret")
+# 5. Filtrar variables correlacionadas (r < 0.8)
+vars_no_cor <- filter_collinear(bio_actual, cutoff = 0.8, method = "cor_caret")
 bio_actual_nc <- bio_actual[[vars_no_cor]]
 
 # 6. Extraer variables dentro de cada hexágono (media por hexágono)
@@ -136,7 +136,7 @@ cov_futuro <- h3sdm_extract_num(bio_futuro_nc, uy_grid_7_32721)
 sf::st_write(cov_futuro, "data/bio_chelsa_futuro_uy_32721_h7.gpkg",
              delete_dsn = TRUE)
 
-# 9. Repetir para resoluciones 6 y 8
+# 9. Repetir para resolución 6
 ```
 
 > **Importante:**
@@ -149,6 +149,8 @@ sf::st_write(cov_futuro, "data/bio_chelsa_futuro_uy_32721_h7.gpkg",
 > - El filtro de correlación `filter_collinear()` se aplica **solo una vez**
 >   sobre las variables actuales. Las mismas variables seleccionadas
 >   se usan para el escenario futuro.
+> - La validación cruzada espacial usa `cellsize = 40000` (40 km), calibrado
+>   para Uruguay mediante comparación de AUC entre distintos tamaños de bloque.
 
 ---
 
@@ -165,8 +167,8 @@ install.packages(c(
   "ggplot2"
 ))
 
-# h3sdm
-remotes::install_github("mspinola/h3sdm")
+# h3sdm (disponible en CRAN)
+install.packages("h3sdm")
 ```
 
 ---

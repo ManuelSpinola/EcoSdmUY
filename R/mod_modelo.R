@@ -189,7 +189,7 @@ mod_modelo_server <- function(id, estado, sidebar_vals) {
         v        = 5,
         repeats  = 1,
         square   = TRUE,
-        cellsize = 30000
+        cellsize = 40000
       )
       estado$cv_split_rv <- cv_split
 
