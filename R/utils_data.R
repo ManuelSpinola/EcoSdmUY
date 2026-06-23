@@ -27,17 +27,15 @@ uy_outline <- function() {
 # ── Rutas de datos ───────────────────────────────────────────
 DATA_DIR <- "data"
 
-# Mapeo resolución → archivo de covariables
+# Mapeo resolución → archivo de covariables (solo h6 y h7 para Uruguay)
 covariables_paths <- list(
   actual = list(
     "6" = file.path(DATA_DIR, "bio_chelsa_presente_no_cor_uy_32721_h6.gpkg"),
-    "7" = file.path(DATA_DIR, "bio_chelsa_presente_no_cor_uy_32721_h7.gpkg"),
-    "8" = file.path(DATA_DIR, "bio_chelsa_presente_no_cor_uy_32721_h8.gpkg")
+    "7" = file.path(DATA_DIR, "bio_chelsa_presente_no_cor_uy_32721_h7.gpkg")
   ),
   futuro = list(
     "6" = file.path(DATA_DIR, "bio_chelsa_futuro_uy_32721_h6.gpkg"),
-    "7" = file.path(DATA_DIR, "bio_chelsa_futuro_uy_32721_h7.gpkg"),
-    "8" = file.path(DATA_DIR, "bio_chelsa_futuro_uy_32721_h8.gpkg")
+    "7" = file.path(DATA_DIR, "bio_chelsa_futuro_uy_32721_h7.gpkg")
   )
 )
 
@@ -46,7 +44,7 @@ covariables_paths <- list(
 
 #' Cargar covariables para una resolución dada
 #'
-#' @param resolucion character "6", "7" o "8"
+#' @param resolucion character "6" o "7"
 #' @param escenario  character "actual" o "futuro"
 #' @return sf con h3_address + variables (o NULL si el archivo no existe)
 cargar_covariables <- function(resolucion, escenario = "actual") {
@@ -74,7 +72,7 @@ cargar_covariables <- function(resolucion, escenario = "actual") {
 #' Verificar disponibilidad de covariables
 #' @return data.frame con estado de cada archivo
 verificar_covariables <- function() {
-  res <- do.call(rbind, lapply(c("6", "7", "8"), function(r) {
+  res <- do.call(rbind, lapply(c("6", "7"), function(r) {
     data.frame(
       resolucion = r,
       actual     = file.exists(covariables_paths$actual[[r]]),
@@ -90,12 +88,11 @@ verificar_covariables <- function() {
 
 # ── Info de resoluciones ─────────────────────────────────────
 info_resoluciones <- data.frame(
-  res   = c("6", "7", "8"),
+  res   = c("6", "7"),
   label = c(
-    "6 — 36.1 km² (paisaje local)",
-    "7 — 5.2 km² (SDM fino ★)",
-    "8 — 0.74 km² (escala de sitio)"
+    "6 — 36.1 km² (paisaje regional)",
+    "7 — 5.2 km² (SDM fino ★)"
   ),
-  area  = c("36.1 km²", "5.2 km²", "0.74 km²"),
+  area  = c("36.1 km²", "5.2 km²"),
   stringsAsFactors = FALSE
 )

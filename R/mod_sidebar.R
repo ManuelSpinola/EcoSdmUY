@@ -12,11 +12,10 @@
 .ALGORITMO   <- "gam"   # algoritmo por defecto
 .FUENTES     <- c("gbif", "inat")
 
-# Etiquetas públicas para las resoluciones
+# Etiquetas públicas para las resoluciones (solo h6 y h7 para Uruguay)
 .res_choices <- c(
-  "6 — Regional (~36 km²)"   = "6",
-  "7 — Local (~5 km²)"       = "7",
-  "8 — Detallado (~0.7 km²)" = "8"
+  "6 — Regional (~36 km²)" = "6",
+  "7 — Local (~5 km²)"     = "7"
 )
 
 # ── UI ────────────────────────────────────────────────────────
@@ -166,7 +165,7 @@ mod_sidebar_server <- function(id, estado) {
       desc <- switch(input$resolucion,
         "6" = "Útil para ver patrones amplios a escala de paisaje.",
         "7" = "Balance ideal entre detalle y velocidad. Recomendado.",
-        "8" = "Mayor detalle — puede tardar más en especies con muchos registros."
+
       )
       div(
         class = "alert alert-light small py-2 px-3 mb-0 mt-1",
