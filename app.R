@@ -67,25 +67,25 @@ ui <- page_navbar(
 
         nav_panel(
           title = tagList(bs_icon("map-fill", class = "me-1"),
-                          "Dist. actual"),
+                          "Distribución actual"),
           mod_mapas_ui("mapas_presente", tipo = "presente")
         ),
 
         nav_panel(
           title = tagList(bs_icon("thermometer-half", class = "me-1"),
-                          "Dist. futura"),
+                          "Distribución futura"),
           mod_mapas_ui("mapas_futuro", tipo = "futuro")
         ),
 
         nav_panel(
           title = tagList(bs_icon("shield-check", class = "me-1"),
-                          "Confiabilidad"),
+                          "Confiabilidad actual"),
           mod_mapas_ui("mapas_aoa", tipo = "aoa")
         ),
 
         nav_panel(
           title = tagList(bs_icon("shield-shaded", class = "me-1"),
-                          "Conf. futura"),
+                          "Confiabilidad futura"),
           mod_mapas_ui("mapas_aoa_futuro", tipo = "aoa_futuro")
         ),
 
