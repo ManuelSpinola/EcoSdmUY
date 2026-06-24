@@ -163,6 +163,22 @@ ui <- page_navbar(
 
       div(
         style = "margin-top:auto; padding-top:1rem;",
+
+        card(
+          card_header(bs_icon("quote", class = "me-1"), "Citar este trabajo"),
+          card_body(
+            p(class = "small font-monospace bg-light p-2 rounded",
+              "Spínola, M. & Spínola Auscarriaga, J. (2026). EcoSdmUY: Explorador de",
+              tags$br(),
+              "Distribución de Especies de Uruguay. EcoSuite, versión 1.0.",
+              tags$br(),
+              tags$a("https://github.com/ManuelSpinola/EcoSdmUY",
+                     href = "https://github.com/ManuelSpinola/EcoSdmUY",
+                     target = "_blank")
+            )
+          )
+        ),
+
         card(
           card_header(bs_icon("person", class = "me-1"), "Créditos"),
           card_body(

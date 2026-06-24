@@ -60,7 +60,7 @@ mod_sidebar_ui <- function(id) {
       textInput(
         ns("especie"),
         label       = NULL,
-        placeholder = "Ej. Chrysocyon brachyurus"
+        placeholder = "Ej. Myiopsitta monachus"
       ),
       p(class = "small text-muted mb-0",
         bs_icon("info-circle", class = "me-1"),

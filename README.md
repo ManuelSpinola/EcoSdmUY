@@ -222,6 +222,18 @@ sf::st_write(uy, "data/uruguay_sf_ne.gpkg")
 
 ---
 
+---
+
+## Citar este trabajo
+
+Si usás esta app en investigación o publicaciones, por favor citala como:
+
+> Spínola, M. & Spínola Auscarriaga, J. (2026). EcoSdmUY: Explorador de
+> Distribución de Especies de Uruguay. EcoSuite, versión 1.0.
+> https://github.com/ManuelSpinola/EcoSdmUY
+
+---
+
 ## EcoSuite
 
 Esta app forma parte de **EcoSuite**, una colección de aplicaciones web
