@@ -96,7 +96,14 @@ mod_sidebar_ui <- function(id) {
       style = "font-weight:600; font-size:1rem; padding:0.5rem;"
     ),
 
-    br(), br(),
+    div(
+      class = "alert alert-light small py-2 px-3 mt-2 mb-0",
+      bs_icon("clock", class = "me-1"),
+      "El análisis se realiza en tiempo real y puede tardar ",
+      tags$b("uno a varios minutos"), " según la especie y la resolución elegida."
+    ),
+
+    br(),
 
     # Spinner de descarga (oculto por defecto)
     shinyjs::hidden(

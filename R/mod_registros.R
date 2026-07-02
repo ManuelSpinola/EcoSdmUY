@@ -17,6 +17,23 @@ mod_registros_ui <- function(id) {
       div(
         card(
           class = "mb-3",
+          card_header(bs_icon("cpu", class = "me-1"), "¿Cómo funciona el modelo?"),
+          card_body(
+            p(class = "small mb-2",
+              "Con estos registros, la app construye automáticamente un ",
+              tags$b("modelo de distribución de especies"), " usando un ",
+              tags$b("GAM espacial"), " (Modelo Aditivo Generalizado con estructura espacial)."),
+            p(class = "small mb-2",
+              "Este modelo aprende las condiciones climáticas donde la especie ha sido observada
+               y estima en qué otras zonas del país podrían encontrarse condiciones similares."),
+            p(class = "small mb-0 text-muted",
+              bs_icon("info-circle", class = "me-1"),
+              "La estructura espacial ayuda a capturar patrones geográficos que van más allá
+               de las variables climáticas, mejorando la precisión de las predicciones.")
+          )
+        ),
+        card(
+          class = "mb-3",
           card_header(bs_icon("info-circle", class = "me-1"),
                       "Resumen"),
           card_body(uiOutput(ns("resumen_registros")))

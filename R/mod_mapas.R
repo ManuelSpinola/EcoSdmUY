@@ -30,10 +30,33 @@ mod_mapas_ui <- function(id, tipo = "presente") {
     div(class = "p-3",
       uiOutput(ns("resumen")), br(),
       layout_columns(col_widths = c(6, 6),
-        card(card_header(bs_icon("palette", class = "me-1"), "Idoneidad continua (0-1)"),
-             card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cont"), height = "520px"))),
-        card(card_header(bs_icon("layers", class = "me-1"), "Categorías de hábitat"),
-             card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cat"), height = "520px")))
+        div(
+          card(card_header(bs_icon("palette", class = "me-1"), "Idoneidad continua (0-1)"),
+               card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cont"), height = "520px"))),
+          div(class = "alert alert-light small py-2 px-3 mt-2",
+            bs_icon("info-circle", class = "me-1"),
+            tags$b("¿Qué muestra este mapa?"), " La ",
+            tags$b("idoneidad del hábitat"), " indica qué tan favorables son las condiciones
+             climáticas de cada zona para la especie, en una escala de ",
+            tags$b("0 a 1"), ". Valores cercanos a ", tags$b("1"), " (colores oscuros/morados)
+             indican condiciones muy favorables; valores cercanos a ", tags$b("0"),
+             " (colores amarillos/claros) indican condiciones poco favorables.
+             Este índice no garantiza la presencia de la especie, pero ayuda a identificar
+             dónde es más probable encontrarla."
+          )
+        ),
+        div(
+          card(card_header(bs_icon("layers", class = "me-1"), "Categorías de hábitat"),
+               card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cat"), height = "520px"))),
+          div(class = "alert alert-light small py-2 px-3 mt-2",
+            bs_icon("info-circle", class = "me-1"),
+            tags$b("¿Qué muestra este mapa?"), " La misma idoneidad del mapa anterior,
+             pero agrupada en ",
+            tags$b("cinco categorías"), " para facilitar su interpretación:
+             Muy bajo, Bajo, Medio, Alto y Muy alto. Útil para identificar rápidamente
+             las zonas con mayor potencial para la especie."
+          )
+        )
       ), br(),
       layout_columns(col_widths = c(3, 3),
         downloadButton(ns("dl_cont"), "Descargar continuo (.gpkg)", class = "btn-outline-primary btn-sm w-100"),
@@ -45,10 +68,30 @@ mod_mapas_ui <- function(id, tipo = "presente") {
     div(class = "p-3",
       uiOutput(ns("resumen")), br(),
       layout_columns(col_widths = c(6, 6),
-        card(card_header(bs_icon("palette", class = "me-1"), "Idoneidad futura continua (0-1)"),
-             card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cont"), height = "520px"))),
-        card(card_header(bs_icon("layers", class = "me-1"), "Categorías de hábitat futuro"),
-             card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cat"), height = "520px")))
+        div(
+          card(card_header(bs_icon("palette", class = "me-1"), "Idoneidad futura continua (0-1)"),
+               card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cont"), height = "520px"))),
+          div(class = "alert alert-light small py-2 px-3 mt-2",
+            bs_icon("thermometer-half", class = "me-1"),
+            tags$b("¿Qué muestra este mapa?"), " La idoneidad del hábitat proyectada al
+             período ", tags$b("2041–2070"), " bajo el escenario climático ",
+            tags$b("SSP5-8.5"), " (altas emisiones de gases de efecto invernadero),
+             usando el modelo climático global ", tags$b("MPI-ESM1-2-HR"),
+             " y datos ", tags$b("CHELSA v2.1"), ". Al compararlo con el mapa
+             actual, es posible identificar zonas donde la especie podría ",
+            tags$b("ganar, mantener o perder"), " hábitat adecuado."
+          )
+        ),
+        div(
+          card(card_header(bs_icon("layers", class = "me-1"), "Categorías de hábitat futuro"),
+               card_body(class = "p-0", leaflet::leafletOutput(ns("mapa_cat"), height = "520px"))),
+          div(class = "alert alert-light small py-2 px-3 mt-2",
+            bs_icon("info-circle", class = "me-1"),
+            tags$b("¿Qué muestra este mapa?"), " La idoneidad futura clasificada en
+             cinco categorías (Muy bajo a Muy alto). Permite visualizar de forma directa
+             cómo podría redistribuirse el hábitat de la especie ante el cambio climático."
+          )
+        )
       ), br(),
       layout_columns(col_widths = c(3, 3),
         downloadButton(ns("dl_cont"), "Descargar continuo (.gpkg)", class = "btn-outline-primary btn-sm w-100"),
@@ -88,8 +131,8 @@ mod_mapas_server <- function(id, estado, tipo = "presente") {
         else                    estado$pred_futuro_sf
       })
 
-      titulo_cont <- if (tipo == "presente") "Idoneidad presente" else "Idoneidad 2061-2080"
-      titulo_cat  <- if (tipo == "presente") "Hábitat presente"   else "Hábitat 2061-2080"
+      titulo_cont <- if (tipo == "presente") "Idoneidad presente" else "Idoneidad 2041-2070"
+      titulo_cat  <- if (tipo == "presente") "Hábitat presente"   else "Hábitat 2041-2070"
 
       output$resumen <- renderUI({
         p <- pred_rv()
