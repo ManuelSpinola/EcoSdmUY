@@ -25,7 +25,43 @@ mod_metricas_ui <- function(id) {
           uiOutput(ns("tabla_metricas")),
           br(),
           downloadButton(ns("dl_metricas"), "Descargar métricas",
-                         class = "btn-outline-primary btn-sm w-100")
+                         class = "btn-outline-primary btn-sm w-100"),
+          br(), br(),
+          accordion(
+            open = FALSE,
+            accordion_panel(
+              value = "interpretacion",
+              title = tagList(bs_icon("question-circle", class = "me-1"),
+                              "¿Cómo interpretar estas métricas?"),
+              p(class = "small mb-1",
+                tags$b("Accuracy"), " — Porcentaje de hexágonos correctamente clasificados
+                (presencia o ausencia). Puede ser engañoso si hay muchas más ausencias que presencias."),
+              p(class = "small mb-1",
+                tags$b("F1 (f_meas)"), " — Combina la capacidad del modelo de detectar presencias
+                reales sin generar falsas alarmas. Útil cuando los datos están desbalanceados."),
+              p(class = "small mb-1",
+                tags$b("Kappa (kap)"), " — Mide el acuerdo entre las predicciones y la realidad
+                más allá del azar. Valores sobre 0.4 son aceptables; sobre 0.6, buenos."),
+              p(class = "small mb-1",
+                tags$b("AUC-ROC (roc_auc)"), " — Mide qué tan bien el modelo distingue presencias
+                de ausencias. Valores sobre 0.7 son aceptables; sobre 0.8, buenos; sobre 0.9, excelentes."),
+              p(class = "small mb-1",
+                tags$b("Sensibilidad (sens)"), " — Proporción de presencias reales que el modelo
+                detectó correctamente. Importante para no subestimar el rango de la especie."),
+              p(class = "small mb-1",
+                tags$b("Especificidad (spec)"), " — Proporción de ausencias reales que el modelo
+                identificó correctamente. Importante para no sobreestimar el rango."),
+              p(class = "small mb-1",
+                tags$b("TSS"), " — True Skill Statistic (sensibilidad + especificidad − 1).
+                Muy usado en modelos de distribución de especies.
+                Valores sobre 0.4 son aceptables; sobre 0.6, buenos."),
+              p(class = "small mb-0",
+                tags$b("Boyce"), " — Evalúa si las zonas de mayor idoneidad predicha concentran
+                más registros reales de la especie. Va de −1 a 1: valores cercanos a 1 indican
+                un modelo bien calibrado; cercanos a 0, no mejor que el azar;
+                negativos indican predicciones inversas a la realidad.")
+            )
+          )
         )
       ),
 
