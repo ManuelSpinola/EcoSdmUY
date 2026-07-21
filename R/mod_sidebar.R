@@ -105,19 +105,6 @@ mod_sidebar_ui <- function(id) {
 
     br(),
 
-    # Spinner de descarga (oculto por defecto)
-    shinyjs::hidden(
-      div(
-        id = ns("spinner_descarga"),
-        class = "alert alert-info small py-2 px-3 mb-2 text-center",
-        tags$span(
-          class = "spinner-border spinner-border-sm me-2",
-          role  = "status"
-        ),
-        "Descargando registros…"
-      )
-    ),
-
     # Estado / feedback
     uiOutput(ns("estado_modelo")),
 
@@ -166,6 +153,7 @@ mod_sidebar_ui <- function(id) {
 # ── Server ────────────────────────────────────────────────────
 mod_sidebar_server <- function(id, estado) {
   moduleServer(id, function(input, output, session) {
+    ns <- session$ns
 
     # Info de resolución en lenguaje público
     output$info_res <- renderUI({
@@ -213,8 +201,18 @@ mod_sidebar_server <- function(id, estado) {
         return()
       }
 
-      # Mostrar spinner de descarga
-      shinyjs::show("spinner_descarga")
+      # Mostrar aviso de descarga (notificación flotante, visible
+      # independientemente del scroll del sidebar — se ve igual en Posit y local)
+      showNotification(
+        tagList(
+          tags$span(class = "spinner-border spinner-border-sm me-2", role = "status"),
+          "Descargando registros…"
+        ),
+        id       = ns("notif_descarga"),
+        duration = NULL,
+        closeButton = FALSE,
+        type     = "message"
+      )
 
       # Resetear estado anterior
       estado$registros_sf        <- NULL
@@ -235,9 +233,9 @@ mod_sidebar_server <- function(id, estado) {
       estado$trigger_modelar <- Sys.time()
     })
 
-    # Ocultar spinner cuando lleguen los registros
+    # Ocultar aviso de descarga cuando lleguen los registros
     observeEvent(estado$registros_listos, ignoreNULL = TRUE, {
-      shinyjs::hide("spinner_descarga")
+      removeNotification(id = ns("notif_descarga"))
     })
 
     # Retornar reactivos
