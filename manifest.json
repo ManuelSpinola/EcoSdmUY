@@ -1,7 +1,7 @@
 {
   "version": 1,
   "locale": "en_US",
-  "platform": "4.6.0",
+  "platform": "4.6.1",
   "metadata": {
     "appmode": "shiny",
     "primary_rmd": null,
@@ -2619,35 +2619,37 @@
       "Repository": "https://packagemanager.posit.co/cran/latest",
       "description": {
         "Package": "future",
-        "Version": "1.70.0",
+        "Version": "1.82.0",
         "Title": "Unified Parallel and Distributed Processing in R for Everyone",
         "Depends": "R (>= 3.2.0)",
-        "Imports": "digest, globals (>= 0.18.0), listenv (>= 0.8.0), parallel,\nparallelly (>= 1.44.0), tools, utils",
-        "Suggests": "methods, RhpcBLASctl, R.rsp, markdown",
+        "Imports": "globals (>= 0.18.0), listenv (>= 0.8.0), parallel, parallelly\n(>= 1.44.0), tools, utils",
+        "Suggests": "digest, methods, RhpcBLASctl, R.rsp, markdown",
         "VignetteBuilder": "R.rsp",
         "Authors@R": "c(person(\"Henrik\", \"Bengtsson\",\n                    role = c(\"aut\", \"cre\", \"cph\"),\n                    email = \"henrikb@braju.com\",\n                    comment = c(ORCID = \"0000-0002-7579-5165\")))",
         "Description": "The purpose of this package is to provide a lightweight and\n    unified Future API for sequential and parallel processing of R\n    expression via futures.  The simplest way to evaluate an expression\n    in parallel is to use `x %<-% { expression }` with `plan(multisession)`.\n    This package implements sequential, multicore, multisession, and\n    cluster futures.  With these, R expressions can be evaluated on the\n    local machine, in parallel a set of local machines, or distributed\n    on a mix of local and remote machines.\n    Extensions to this package implement additional backends for\n    processing futures via compute cluster schedulers, etc.\n    Because of its unified API, there is no need to modify any code in order\n    switch from sequential on the local machine to, say, distributed\n    processing on a remote compute cluster.\n    Another strength of this package is that global variables and functions\n    are automatically identified and exported as needed, making it\n    straightforward to tweak existing code to make use of futures.",
-        "License": "LGPL (>= 2.1)",
+        "License": "Apache License (>= 2)",
         "LazyLoad": "TRUE",
         "ByteCompile": "TRUE",
         "URL": "https://future.futureverse.org,\nhttps://github.com/futureverse/future",
         "BugReports": "https://github.com/futureverse/future/issues",
         "Language": "en-US",
         "Encoding": "UTF-8",
-        "RoxygenNote": "7.3.3",
         "Collate": "'000.bquote.R' '000.import.R' '000.re-exports.R'\n'009.deprecation.R' '010.tweakable.R' '010.utils-parallelly.R'\n'backend_api-01-FutureBackend-class.R'\n'backend_api-03.MultiprocessFutureBackend-class.R'\n'backend_api-11.ClusterFutureBackend-class.R'\n'backend_api-11.MulticoreFutureBackend-class.R'\n'backend_api-11.SequentialFutureBackend-class.R'\n'backend_api-13.MultisessionFutureBackend-class.R'\n'backend_api-ConstantFuture-class.R'\n'backend_api-Future-class.R' 'backend_api-FutureRegistry.R'\n'backend_api-UniprocessFuture-class.R'\n'backend_api-evalFuture.R' 'core_api-cancel.R'\n'core_api-future.R' 'core_api-reset.R' 'core_api-resolved.R'\n'core_api-value.R' 'delayed_api-futureAssign.R'\n'delayed_api-futureOf.R' 'demo_api-mandelbrot.R'\n'infix_api-01-futureAssign_OP.R' 'infix_api-02-globals_OP.R'\n'infix_api-03-seed_OP.R' 'infix_api-04-stdout_OP.R'\n'infix_api-05-conditions_OP.R' 'infix_api-06-lazy_OP.R'\n'infix_api-07-label_OP.R' 'infix_api-08-plan_OP.R'\n'infix_api-09-tweak_OP.R'\n'protected_api-FutureCondition-class.R'\n'protected_api-FutureGlobals-class.R'\n'protected_api-FutureResult-class.R' 'protected_api-futures.R'\n'protected_api-globals.R' 'protected_api-journal.R'\n'protected_api-resolve.R' 'protected_api-result.R'\n'protected_api-signalConditions.R' 'testme.R' 'utils-basic.R'\n'utils-conditions.R' 'utils-connections.R' 'utils-debug.R'\n'utils-immediateCondition.R' 'utils-marshalling.R'\n'utils-objectSize.R' 'utils-options.R' 'utils-prune_pkg_code.R'\n'utils-registerClusterTypes.R' 'utils-rng_utils.R'\n'utils-signalEarly.R' 'utils-stealth_sample.R'\n'utils-sticky_globals.R' 'utils-tweakExpression.R'\n'utils-uuid.R' 'utils-whichIndex.R' 'utils_api-backtrace.R'\n'utils_api-capture_journals.R' 'utils_api-futureCall.R'\n'utils_api-futureSessionInfo.R' 'utils_api-makeClusterFuture.R'\n'utils_api-minifuture.R' 'utils_api-nbrOfWorkers.R'\n'utils_api-plan.R' 'utils_api-plan-with.R'\n'utils_api-sessionDetails.R' 'utils_api-tweak.R' 'zzz.R'",
+        "Config/roxygen2/version": "8.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2026-03-13 21:01:52 UTC; hb",
+        "Packaged": "2026-11-01 17:03:49 UTC; hb",
         "Author": "Henrik Bengtsson [aut, cre, cph] (ORCID:\n    <https://orcid.org/0000-0002-7579-5165>)",
         "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-03-14 06:10:29 UTC",
-        "Built": "R 4.6.0; ; 2026-04-26 02:20:33 UTC; unix",
+        "Date/Publication": "2026-11-02 16:20:02 UTC",
+        "Built": "R 4.6.1; ; 2026-11-02 18:27:09 UTC; unix",
         "RemoteType": "standard",
-        "RemotePkgRef": "future",
         "RemoteRef": "future",
-        "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha": "1.70.0"
+        "RemotePkgRef": "future",
+        "RemoteRepos": "https://cran.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "aarch64-apple-darwin23",
+        "RemoteSha": "1.82.0"
       }
     },
     "future.apply": {
@@ -2690,33 +2692,36 @@
       "description": {
         "Package": "gargle",
         "Title": "Utilities for Working with Google APIs",
-        "Version": "1.6.1",
-        "Authors@R": "c(\n    person(\"Jennifer\", \"Bryan\", , \"jenny@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-6983-2759\")),\n    person(\"Craig\", \"Citro\", , \"craigcitro@google.com\", role = \"aut\"),\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Google Inc\", role = \"cph\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
+        "Version": "1.7.0",
+        "Authors@R": "c(\n    person(\"Jennifer\", \"Bryan\", , \"jenny@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-6983-2759\")),\n    person(\"Craig\", \"Citro\", , \"craigcitro@google.com\", role = \"aut\"),\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-4757-117X\")),\n    person(\"Google Inc\", role = \"cph\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"),\n           comment = c(ROR = \"03wc8by49\"))\n  )",
         "Description": "Provides utilities for working with Google APIs\n    <https://developers.google.com/apis-explorer>.  This includes\n    functions and classes for handling common credential types and for\n    preparing, executing, and processing HTTP requests.",
         "License": "MIT + file LICENSE",
         "URL": "https://gargle.r-lib.org, https://github.com/r-lib/gargle",
         "BugReports": "https://github.com/r-lib/gargle/issues",
-        "Depends": "R (>= 4.1)",
-        "Imports": "cli (>= 3.0.1), fs (>= 1.3.1), glue (>= 1.3.0), httr (>=\n1.4.5), jsonlite, lifecycle (>= 0.2.0), openssl, rappdirs,\nrlang (>= 1.1.0), stats, utils, withr",
-        "Suggests": "aws.ec2metadata, aws.signature, covr, httpuv, knitr,\nrmarkdown, sodium, spelling, testthat (>= 3.1.7)",
+        "Depends": "R (>= 4.2)",
+        "Imports": "cli (>= 3.0.1), fs (>= 1.3.1), glue (>= 1.3.0), httr (>=\n1.4.5), jsonlite, lifecycle, openssl, R6, rappdirs, rlang (>=\n1.1.0), stats, utils, withr",
+        "Suggests": "aws.ec2metadata, aws.signature, covr, httpuv, knitr,\nrmarkdown, spelling, testthat (>= 3.1.7)",
         "VignetteBuilder": "knitr",
         "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/roxygen2/version": "8.1.0",
         "Config/testthat/edition": "3",
+        "Config/usethis/last-upkeep": "2026-10-20",
         "Encoding": "UTF-8",
         "Language": "en-US",
-        "RoxygenNote": "7.3.3",
         "NeedsCompilation": "no",
-        "Packaged": "2026-01-28 21:12:16 UTC; jenny",
-        "Author": "Jennifer Bryan [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-6983-2759>),\n  Craig Citro [aut],\n  Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>),\n  Google Inc [cph],\n  Posit Software, PBC [cph, fnd]",
+        "Packaged": "2026-10-28 16:32:41 UTC; jenny",
+        "Author": "Jennifer Bryan [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-6983-2759>),\n  Craig Citro [aut],\n  Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>),\n  Google Inc [cph],\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
         "Maintainer": "Jennifer Bryan <jenny@posit.co>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-01-29 06:10:33 UTC",
-        "Built": "R 4.6.0; ; 2026-04-26 05:25:33 UTC; unix",
+        "Date/Publication": "2026-10-28 19:50:02 UTC",
+        "Built": "R 4.6.1; ; 2026-10-29 01:02:14 UTC; unix",
         "RemoteType": "standard",
-        "RemotePkgRef": "gargle",
         "RemoteRef": "gargle",
-        "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha": "1.6.1"
+        "RemotePkgRef": "gargle",
+        "RemoteRepos": "https://cran.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "aarch64-apple-darwin23",
+        "RemoteSha": "1.7.0"
       }
     },
     "gbm": {
@@ -3242,7 +3247,8 @@
         "Package": "h3sdm",
         "Type": "Package",
         "Title": "Species Distribution Modeling with H3 Grids",
-        "Version": "0.1.6",
+        "Version": "0.1.9",
+        "Date": "2026-11-21",
         "Authors@R": "\n    person(given = \"Manuel\",\n           family = \"Spínola\",\n           role = c(\"aut\", \"cre\"),\n           email = \"mspinola10@gmail.com\")",
         "Description": "Provides tools for species distribution modeling using H3\n  hexagonal grids (Uber Technologies Inc., 2022, <https://h3geo.org>).\n  Facilitates retrieval of species occurrence records, generation of H3 grids,\n  computation of landscape metrics, and preparation of spatial data for modern\n  species distribution models workflows. Designed for biodiversity and landscape ecology research.",
         "URL": "https://github.com/ManuelSpinola/h3sdm",
@@ -3251,25 +3257,26 @@
         "Encoding": "UTF-8",
         "Depends": "R (>= 4.1)",
         "Config/Needs/website": "tidyverse/tidytemplate",
-        "Imports": "stats, sf, dplyr, purrr, tibble, rlang, terra, spatialsample,\nrecipes, rsample, tune, workflows, yardstick, ecospat, DALEX,\nstacks, h3jsr, landscapemetrics, rbiodatacr, spocc, vip,\nexactextractr, tidyr, cli",
+        "Imports": "stats, sf, dplyr, purrr, tibble, rlang, terra, spatialsample,\nrecipes, rsample, tune, workflows, yardstick, ecospat, DALEX,\nstacks, h3jsr, landscapemetrics, rbiodatacr, spocc,\nexactextractr, tidyr, cli",
         "Suggests": "ggplot2, paisaje, knitr, rmarkdown, here, themis, DALEXtra,\ningredients, tidyterra, tidymodels, workflowsets, ranger,\nxgboost, ggbrick, parsnip, tidyverse, geodata",
         "VignetteBuilder": "knitr",
         "LazyData": "true",
         "Language": "en-US",
-        "Config/roxygen2/version": "8.0.0",
+        "Config/roxygen2/version": "8.1.1",
         "NeedsCompilation": "no",
-        "Packaged": "2026-06-15 05:10:04 UTC; manuel_nuevo",
+        "Packaged": "2026-11-23 13:29:17 UTC; manuel_nuevo",
         "Author": "Manuel Spínola [aut, cre]",
         "Maintainer": "Manuel Spínola <mspinola10@gmail.com>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-06-15 07:50:25 UTC",
-        "Built": "R 4.6.0; ; 2026-06-15 08:48:29 UTC; unix",
+        "Date/Publication": "2026-11-23 15:30:10 UTC",
+        "Built": "R 4.6.1; ; 2026-11-23 16:56:42 UTC; unix",
         "RemoteType": "standard",
         "RemoteRef": "h3sdm",
         "RemotePkgRef": "h3sdm",
         "RemoteRepos": "https://cran.r-project.org",
+        "RemoteReposName": "CRAN",
         "RemotePkgPlatform": "aarch64-apple-darwin23",
-        "RemoteSha": "0.1.6"
+        "RemoteSha": "0.1.9"
       }
     },
     "hardhat": {
@@ -7492,7 +7499,7 @@
         "Type": "Package",
         "Package": "systemfonts",
         "Title": "System Native Font Finding",
-        "Version": "1.3.2",
+        "Version": "1.3.4",
         "Authors@R": "c(\n    person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-5147-4711\")),\n    person(\"Jeroen\", \"Ooms\", , \"jeroen@berkeley.edu\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Devon\", \"Govett\", role = \"aut\",\n           comment = \"Author of font-manager\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"),\n           comment = c(ROR = \"03wc8by49\"))\n  )",
         "Description": "Provides system native access to the font catalogue. As font\n    handling varies between systems it is difficult to correctly locate\n    installed fonts across different operating systems. The 'systemfonts'\n    package provides bindings to the native libraries on Windows, macOS\n    and Linux for finding font files that can then be used further by e.g.\n    graphic devices. The main use is intended to be from compiled code but\n    'systemfonts' also provides access from R.",
         "License": "MIT + file LICENSE",
@@ -7500,28 +7507,30 @@
         "BugReports": "https://github.com/r-lib/systemfonts/issues",
         "Depends": "R (>= 3.2.0)",
         "Imports": "base64enc, grid, jsonlite, lifecycle, tools, utils",
-        "Suggests": "covr, farver, ggplot2, graphics, knitr, ragg, rmarkdown,\nsvglite, testthat (>= 2.1.0)",
+        "Suggests": "covr, farver, ggplot2, graphics, knitr, ragg, rmarkdown,\nsvglite, testthat (>= 3.2.0)",
         "LinkingTo": "cpp11 (>= 0.2.1)",
         "VignetteBuilder": "knitr",
         "Config/build/compilation-database": "true",
         "Config/Needs/website": "tidyverse/tidytemplate",
         "Config/usethis/last-upkeep": "2025-04-23",
         "Encoding": "UTF-8",
-        "RoxygenNote": "7.3.2",
         "SystemRequirements": "fontconfig, freetype2",
+        "Config/roxygen2/version": "8.1.1",
         "NeedsCompilation": "yes",
-        "Packaged": "2026-03-05 12:24:52 UTC; thomas",
+        "Packaged": "2026-11-19 07:40:26 UTC; thomas",
         "Author": "Thomas Lin Pedersen [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-5147-4711>),\n  Jeroen Ooms [aut] (ORCID: <https://orcid.org/0000-0002-4035-0289>),\n  Devon Govett [aut] (Author of font-manager),\n  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
         "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
         "Repository": "CRAN",
-        "Date/Publication": "2026-03-05 13:10:02 UTC",
-        "Built": "R 4.6.0; aarch64-apple-darwin23; 2026-04-25 23:16:44 UTC; unix",
+        "Date/Publication": "2026-11-21 08:10:02 UTC",
+        "Built": "R 4.6.1; aarch64-apple-darwin23; 2026-11-21 11:37:09 UTC; unix",
         "Archs": "systemfonts.so.dSYM",
         "RemoteType": "standard",
-        "RemotePkgRef": "systemfonts",
         "RemoteRef": "systemfonts",
-        "RemoteRepos": "https://cran.rstudio.com",
-        "RemoteSha": "1.3.2"
+        "RemotePkgRef": "systemfonts",
+        "RemoteRepos": "https://cran.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "aarch64-apple-darwin23",
+        "RemoteSha": "1.3.4"
       }
     },
     "tailor": {
@@ -8187,41 +8196,6 @@
         "RemoteSha": "2.7-5"
       }
     },
-    "vip": {
-      "Source": "CRAN",
-      "Repository": "https://packagemanager.posit.co/cran/latest",
-      "description": {
-        "Package": "vip",
-        "Type": "Package",
-        "Title": "Variable Importance Plots",
-        "Version": "0.4.6",
-        "Authors@R": "c(\n  person(c(\"Brandon\", \"M.\"), family = \"Greenwell\", \n         email = \"greenwell.brandon@gmail.com\",\n         role = c(\"aut\", \"cre\"), \n         comment = c(ORCID = \"0000-0002-8120-0084\")),\n  person(\"Brad\", \"Boehmke\",\n         email = \"bradleyboehmke@gmail.com\",\n         role = c(\"aut\"),\n         comment = c(ORCID = \"0000-0002-3611-8516\"))\n  )",
-        "Description": "A general framework for constructing variable importance plots from \n  various types of machine learning models in R. Aside from some standard model-\n  specific variable importance measures, this package also provides model-\n  agnostic approaches that can be applied to any supervised learning algorithm.\n  These include 1) an efficient permutation-based variable importance measure, \n  2) variable importance based on Shapley values (Strumbelj and Kononenko, \n  2014) <doi:10.1007/s10115-013-0679-x>, and 3) the variance-based \n  approach described in Greenwell et al. (2018) <doi:10.48550/arXiv.1805.04755>. A \n  variance-based method for quantifying the relative strength of interaction \n  effects is also included (see the previous reference for details).",
-        "License": "GPL (>= 2)",
-        "URL": "https://github.com/koalaverse/vip/,\nhttps://koalaverse.github.io/vip/",
-        "BugReports": "https://github.com/koalaverse/vip/issues",
-        "Encoding": "UTF-8",
-        "VignetteBuilder": "knitr",
-        "Depends": "R (>= 4.1.0)",
-        "Imports": "foreach, ggplot2 (>= 0.9.0), stats, tibble, utils, yardstick",
-        "Suggests": "bookdown, DT, covr, doParallel, dplyr, fastshap (>= 0.1.0),\nknitr, lattice, mlbench, modeldata, NeuralNetTools, pdp,\nrmarkdown, tinytest (>= 1.4.3), varImp",
-        "Enhances": "C50, caret, Cubist, earth, gbm, glmnet, h2o, lightgbm,\nmixOmics, mlr, mlr3, neuralnet, nnet, parsnip (>= 0.1.7),\nparty, partykit, pls, randomForest, ranger, rpart, RSNNS,\nsparklyr (>= 0.8.0), tidymodels, workflows (>= 0.2.3), xgboost\n(>= 3.2.0)",
-        "RoxygenNote": "7.3.3",
-        "NeedsCompilation": "no",
-        "Packaged": "2026-04-22 19:28:15 UTC; greenwbm",
-        "Author": "Brandon M. Greenwell [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-8120-0084>),\n  Brad Boehmke [aut] (ORCID: <https://orcid.org/0000-0002-3611-8516>)",
-        "Maintainer": "Brandon M. Greenwell <greenwell.brandon@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2026-04-23 07:20:02 UTC",
-        "Built": "R 4.6.0; ; 2026-04-26 13:43:19 UTC; unix",
-        "RemoteType": "standard",
-        "RemotePkgRef": "vip",
-        "RemoteRef": "vip",
-        "RemoteRepos": "https://cran.rstudio.com/",
-        "RemotePkgPlatform": "aarch64-apple-darwin23",
-        "RemoteSha": "0.4.6"
-      }
-    },
     "viridisLite": {
       "Source": "CRAN",
       "Repository": "https://packagemanager.posit.co/cran/latest",
@@ -8680,10 +8654,16 @@
       "checksum": "ecb1f6047d538124f06862b8e7dbfca5"
     },
     ".Rprofile": {
-      "checksum": "e4546f2cdeca9bbdf3dedabe68ab2731"
+      "checksum": "7ac60c65d2c4f8a92c091af738e41caa"
     },
     "app.R": {
-      "checksum": "824d855734636abfda890e4818072444"
+      "checksum": "3023930347ce102616f1c77034b6a3f9"
+    },
+    "data/bio_chelsa_futuro_todas_uy_32721_h6.gpkg": {
+      "checksum": "2b20e8abd068574c639b8e853b95a1f1"
+    },
+    "data/bio_chelsa_futuro_todas_uy_32721_h7.gpkg": {
+      "checksum": "99413a43dc157256ce32e90070dc9bee"
     },
     "data/bio_chelsa_futuro_uy_32721_h6.gpkg": {
       "checksum": "47335e14000f73180f822057ea5a6d5d"
@@ -8691,50 +8671,50 @@
     "data/bio_chelsa_futuro_uy_32721_h7.gpkg": {
       "checksum": "be04881b15d43b6bc99e2649e7b1e971"
     },
-    "data/bio_chelsa_futuro_uy_32721_h8.gpkg": {
-      "checksum": "6e2d794d4d478a8e92acf438b3cc101c"
-    },
     "data/bio_chelsa_presente_no_cor_uy_32721_h6.gpkg": {
       "checksum": "6e9ed26188102f3b59088bca16419f2e"
     },
     "data/bio_chelsa_presente_no_cor_uy_32721_h7.gpkg": {
       "checksum": "7b61a4ce9c25d40caf2fd9b43970a6e1"
     },
-    "data/bio_chelsa_presente_no_cor_uy_32721_h8.gpkg": {
-      "checksum": "4870d5c565b28146d7051add83d39a0b"
+    "data/bio_chelsa_presente_todas_uy_32721_h6.gpkg": {
+      "checksum": "24b04daacedbe57555e539a435016237"
+    },
+    "data/bio_chelsa_presente_todas_uy_32721_h7.gpkg": {
+      "checksum": "732cc0b020b1098e423530fb2ef8735d"
     },
     "data/uruguay_sf_ne.gpkg": {
       "checksum": "2f9c8d54e5f26f5f2798edcaf8381ba1"
     },
     "DESCRIPTION": {
-      "checksum": "64cb2731de77d083fbe901a0195ad841"
+      "checksum": "84c8bd33186c2aaded67f25504ffbc8f"
     },
     "R/helpers.R": {
       "checksum": "4d3c917c9bdaaa706203268d8f072c3a"
     },
     "R/mod_mapas.R": {
-      "checksum": "146770226e2facfc8a9df908d9c3dffa"
+      "checksum": "8a1b38ef064ae06b9492f268b71f2afc"
     },
     "R/mod_metricas.R": {
-      "checksum": "9950c83902ed6d9c1d644348b442de78"
+      "checksum": "fff83372c06cb016f8d1932199cfa1e1"
     },
     "R/mod_modelo.R": {
-      "checksum": "07864b46d93f1ec2b0fcabbeea48db50"
+      "checksum": "8383da596979197f232aa01d584731a1"
     },
     "R/mod_registros.R": {
-      "checksum": "49b91939a2a4ddda00f6d27dc0cee859"
+      "checksum": "d002bca61dffdfa3b38f62a44f84aee7"
     },
     "R/mod_sidebar.R": {
-      "checksum": "6b7cd5da3b4db51f63adb5c70f3e1285"
+      "checksum": "69754e76a0945d06708a6af37274c4c5"
     },
     "R/utils_data.R": {
-      "checksum": "f68fc70d926b8c6d5e4fe80942d12563"
+      "checksum": "aad72e3597017286685cc85a22a81914"
     },
     "README.md": {
-      "checksum": "69ed82ed042bcefdf31b1cc19a11850d"
+      "checksum": "99ac60d1bf26c4c63652c2e32a746cc5"
     },
     "renv.lock": {
-      "checksum": "4be8c9b3716ef34d12b2bb2d8808ad81"
+      "checksum": "8c4fb56d74d20d112f4f895b3365fbf3"
     },
     "www/logo_uy.png": {
       "checksum": "bf374f52d2a0b16fe096ddc0f9898483"
